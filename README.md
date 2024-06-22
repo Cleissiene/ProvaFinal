@@ -1,4 +1,4 @@
-```graph TD;
+```graph TD
     subgraph UserOperations
         direction TB
         A1[Register] --> B1[Authenticate]
@@ -46,4 +46,3 @@
     ManagerOperations -->|Data Access| I
     SellerOperations -->|Data Access| I
     CustomerOperations -->|Data Access| I```
-
