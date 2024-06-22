@@ -1,44 +1,48 @@
-```mermaid
-graph TD;
-    subgraph User_Operations
-        A1[Registra Usuário] --> B1[Autentica Usuário]
-        B1 --> C1[Extrai Papel de Usuário]
-        style A1 fill:#f9f,stroke:#333,stroke-width:2px;
-        style B1 fill:#9f9,stroke:#333,stroke-width:2px;
-        style C1 fill:#ff9,stroke:#333,stroke-width:2px;
+```graph TD;
+    subgraph UserOperations
+        direction TB
+        A1[Register User] --> B1[Authenticate User]
+        B1 --> C1[Extract User Role]
+        style A1 fill:#ffccf2,stroke:#0033cc,stroke-width:2px;
+        style B1 fill:#ccffcc,stroke:#0033cc,stroke-width:2px;
+        style C1 fill:#ccff99,stroke:#0033cc,stroke-width:2px;
     end
 
-    subgraph Admin_Operations
-        D1[Exclui Usuário]
-        style D1 fill:#f96,stroke:#333,stroke-width:2px;
+    subgraph AdminOperations
+        direction TB
+        D1[Delete User]
+        style D1 fill:#ff9999,stroke:#0033cc,stroke-width:2px;
     end
 
-    subgraph Manager_Operations
-        E1[Exclui Produto]
-        style E1 fill:#69f,stroke:#333,stroke-width:2px;
+    subgraph ManagerOperations
+        direction TB
+        E1[Delete Product]
+        style E1 fill:#99ccff,stroke:#0033cc,stroke-width:2px;
     end
 
-    subgraph Seller_Operations
-        F1[Cria Produto]
-        style F1 fill:#96f,stroke:#333,stroke-width:2px;
+    subgraph SellerOperations
+        direction TB
+        F1[Create Product]
+        style F1 fill:#ccffcc,stroke:#0033cc,stroke-width:2px;
     end
 
-    subgraph Customer_Operations
-        G1[Visualiza Produto]
-        style G1 fill:#6f9,stroke:#333,stroke-width:2px;
+    subgraph CustomerOperations
+        direction TB
+        G1[View Product]
+        style G1 fill:#ccff99,stroke:#0033cc,stroke-width:2px;
     end
 
-    A[API de Autenticação] -->|Registra/Login| User_Operations
-    style A fill:#ffa,stroke:#333,stroke-width:2px;
-    User_Operations -->|Token JWT| H[JWT Service]
-    style H fill:#aaf,stroke:#333,stroke-width:2px;
-    H -->|Autorização| Admin_Operations
-    H -->|Autorização| Manager_Operations
-    H -->|Autorização| Seller_Operations
-    H -->|Autorização| Customer_Operations
-    User_Operations -->|Acesso a Dados| I[MongoDB]
-    style I fill:#fa9,stroke:#333,stroke-width:2px;
-    Admin_Operations -->|Acesso a Dados| I
-    Manager_Operations -->|Acesso a Dados| I
-    Seller_Operations -->|Acesso a Dados| I
-    Customer_Operations -->|Acesso a Dados| I```
+    A[Auth API] -->|Register/Login| UserOperations
+    style A fill:#ffccf2,stroke:#0033cc,stroke-width:2px;
+    UserOperations -->|JWT Token| H[JWT Service]
+    style H fill:#99ccff,stroke:#0033cc,stroke-width:2px;
+    H -->|Authorization| AdminOperations
+    H -->|Authorization| ManagerOperations
+    H -->|Authorization| SellerOperations
+    H -->|Authorization| CustomerOperations
+    UserOperations -->|Data Access| I[MongoDB]
+    style I fill:#ccffcc,stroke:#0033cc,stroke-width:2px;
+    AdminOperations -->|Data Access| I
+    ManagerOperations -->|Data Access| I
+    SellerOperations -->|Data Access| I
+    CustomerOperations -->|Data Access| I```
