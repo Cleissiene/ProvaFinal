@@ -45,6 +45,5 @@
     AdminOperations -->|Data Access| I
     ManagerOperations -->|Data Access| I
     SellerOperations -->|Data Access| I
-    CustomerOperations -->|Data Access| I
-```
+    CustomerOperations -->|Data Access| I```
 
